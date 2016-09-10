@@ -8,7 +8,7 @@
             $scope.CheckIfTooMuch = function() {
                 var cleanedUpInput = $scope.dishes.replace(/\s+,/g, ',')
                     .replace(/,\s+/g, ',')
-                    .replace(/,,/g, ',')
+                    .replace(/,,+/g, ',')
                     .replace(/^,/g, '')
                     .replace(/,$/g, '');
 
