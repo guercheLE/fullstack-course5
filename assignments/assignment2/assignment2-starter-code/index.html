@@ -1,53 +1,73 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <title>Shopping List Check Off</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <style>
-      .emptyMessage {
-        font-weight: bold;
-        color: red;
-        font-size: 1.2em;
-      }
-      li {
-        margin-bottom: 7px;
-        font-size: 1.2em;
-      }
-      li > button {
-        margin-left: 6px;
-      }
-      button > span {
-        color: green;
-      }
-    </style>
-  </head>
-<body>
-  <div class="container">
-  <h1>Shopping List Check Off</h1>
+<html lang="en" ng-app="ShoppingListCheckOff">
 
-  <div class="row">
+    <head>
+        <title>Shopping List Check Off</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha256-ZT4HPpdCOt2lvDkXokHuhJfdOKSPFLzeAJik5U/Q+l4=" crossorigin="anonymous">
+        <style>
+            .emptyMessage {
+                font-weight: bold;
+                color: red;
+                font-size: 1.2em;
+            }
+            
+            li {
+                margin-bottom: 7px;
+                font-size: 1.2em;
+            }
+            
+            li > button {
+                margin-left: 6px;
+            }
+            
+            button > span {
+                color: green;
+            }
+        </style>
+    </head>
 
-    <!-- To Buy List -->
-    <div class="col-md-6">
-     <h2>To Buy:</h2>
-     <ul>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-     </ul>
-     <div class="emptyMessage">Everything is bought!</div>
-    </div>
+    <body>
+        <div class="container">
+            <h1>Shopping List Check Off</h1>
+            <div class="row">
+                <!-- To Buy List -->
+                <div class="col-md-6" ng-controller="ToBuyShoppingController as controller1">
+                    <h2>To Buy:</h2>
+                    <ul>
+                        <li ng-repeat="(index, value) in controller1.toBuyList">Buy {{ value.quantity }} {{ value.name }}
+                            <button class="btn btn-default" ng-click="controller1.moveToAlreadyBoughtList(index)"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+                        </li>
+                    </ul>
+                    <div class="emptyMessage" ng-if="controller1.toBuyList.length === 0">Everything is bought!</div>
+                </div>
+                <!-- Already Bought List -->
+                <div class="col-md-6" ng-controller="AlreadyBoughtShoppingController as controller2">
+                    <h2>Already Bought:</h2>
+                    <ul>
+                        <li ng-repeat="item in controller2.alreadyBoughtList">Bought {{ item.quantity }} {{ item.name }}</li>
+                    </ul>
+                    <div class="emptyMessage" ng-if="controller2.alreadyBoughtList.length === 0">Nothing bought yet.</div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/jquery/3.1.0/jquery.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/angularjs/1.5.5/angular.min.js" integrity="sha256-FETnXgTya5za/5+eslN5uUeiVGnSg8RYtYO9pOnkDoc=" crossorigin="anonymous"></script>
+        <script>
+            window.jQuery || document.write('<script src="scripts/jquery.min.js"><\/script>');
+            window.angular || document.write('<script src="scripts/angular.min.js"><\/script>');
+        </script>
+        <script>
+            $.fn.modal || document.write('<script src="scripts/bootstrap.min.js"><\/script>');
 
-    <!-- Already Bought List -->
-    <div class="col-md-6">
-     <h2>Already Bought:</h2>
-     <ul>
-       <li>Bought 10 cookies</li>
-     </ul>
-     <div class="emptyMessage">Nothing bought yet.</div>
-    </div>
-  </div>
-</div>
+            if ($('body').css('color') !== 'rgb(51, 51, 51)') {
+                $('head').prepend('<link rel="stylesheet" href="styles/bootstrap.min.css">');
+                $('head').prepend('<link rel="stylesheet" href="styles/bootstrap-theme.min.css">');
+            }
+        </script>
+        <script src="scripts/app.js"></script>
+    </body>
 
-</body>
 </html>
