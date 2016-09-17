@@ -33,22 +33,22 @@
             <h1>Shopping List Check Off</h1>
             <div class="row">
                 <!-- To Buy List -->
-                <div class="col-md-6" ng-controller="ToBuyShoppingController as controller1">
+                <div class="col-md-6" ng-controller="ToBuyShoppingController as tbsCtrl">
                     <h2>To Buy:</h2>
                     <ul>
-                        <li ng-repeat="(index, value) in controller1.toBuyList">Buy {{ value.quantity }} {{ value.name }}
-                            <button class="btn btn-default" ng-click="controller1.moveToAlreadyBoughtList(index)"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+                        <li ng-repeat="(index, value) in tbsCtrl.toBuyList">Buy {{ value.quantity }} {{ value.name }}
+                            <button class="btn btn-default" ng-click="tbsCtrl.moveToAlreadyBoughtList(index)"><span class="glyphicon glyphicon-ok"></span> Bought</button>
                         </li>
                     </ul>
-                    <div class="emptyMessage" ng-if="controller1.toBuyList.length === 0">Everything is bought!</div>
+                    <div class="emptyMessage" ng-if="tbsCtrl.toBuyList.length === 0">Everything is bought!</div>
                 </div>
                 <!-- Already Bought List -->
-                <div class="col-md-6" ng-controller="AlreadyBoughtShoppingController as controller2">
+                <div class="col-md-6" ng-controller="AlreadyBoughtShoppingController as absCtrl">
                     <h2>Already Bought:</h2>
                     <ul>
-                        <li ng-repeat="item in controller2.alreadyBoughtList">Bought {{ item.quantity }} {{ item.name }}</li>
+                        <li ng-repeat="item in absCtrl.alreadyBoughtList">Bought {{ item.quantity }} {{ item.name }}</li>
                     </ul>
-                    <div class="emptyMessage" ng-if="controller2.alreadyBoughtList.length === 0">Nothing bought yet.</div>
+                    <div class="emptyMessage" ng-if="absCtrl.alreadyBoughtList.length === 0">Nothing bought yet.</div>
                 </div>
             </div>
         </div>

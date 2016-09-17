@@ -15,11 +15,10 @@
     ToBuyShoppingController.$inject = ['ShoppingListCheckOffService'];
 
     function ToBuyShoppingController(shoppingListCheckOffService) {
-        this.toBuyList = shoppingListCheckOffService.getToBuyList();
+        var self = this;
 
-        this.moveToAlreadyBoughtList = function(index) {
-            shoppingListCheckOffService.moveToAlreadyBoughtList(index);
-        }
+        self.toBuyList = shoppingListCheckOffService.toBuyList;
+        self.moveToAlreadyBoughtList = shoppingListCheckOffService.moveToAlreadyBoughtList;
     };
 
     /*
@@ -28,33 +27,29 @@
     AlreadyBoughtShoppingController.$inject = ['ShoppingListCheckOffService'];
 
     function AlreadyBoughtShoppingController(shoppingListCheckOffService) {
-        this.alreadyBoughtList = shoppingListCheckOffService.getAlreadyBoughtList();
+        var self = this;
+
+        self.alreadyBoughtList = shoppingListCheckOffService.alreadyBoughtList;
     };
 
     /*
      * ShoppingListCheckOffService
      */
     function ShoppingListCheckOffService() {
-        this.toBuyList = [
+        var self = this;
+
+        self.toBuyList = [
             { name: "cookies", quantity: 10 },
             { name: "sugar", quantity: 11 },
             { name: "hazzelnut", quantity: 12 },
             { name: "chocolate", quantity: 13 }
         ];
 
-        this.getToBuyList = function() {
-            return this.toBuyList
-        };
+        self.alreadyBoughtList = [];
 
-        this.alreadyBoughtList = [];
-
-        this.getAlreadyBoughtList = function() {
-            return this.alreadyBoughtList;
-        }
-
-        this.moveToAlreadyBoughtList = function(index) {
-            this.alreadyBoughtList.push({ name: this.toBuyList[index].name, quantity: this.toBuyList[index].quantity });
-            this.toBuyList.splice(index, 1);
+        self.moveToAlreadyBoughtList = function(index) {
+            var item = self.toBuyList.splice(index, 1)[0];
+            self.alreadyBoughtList.push(item);
         };
     };
 })();
