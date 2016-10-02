@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="NarrowItDownApp" ng-controller="NarrowItDownController as nidctrl">
+<html lang="en">
 
     <head>
         <title>Narrow Down Your Menu Choice</title>
@@ -9,8 +9,8 @@
         <link rel="stylesheet" href="styles/styles.css">
     </head>
 
-    <body>
-        <div class="container">
+    <body ng-app="NarrowItDownApp">
+        <div class="container" ng-controller="NarrowItDownController as nidctrl">
             <h1>Narrow Down Your Chinese Menu Choice</h1>
             <div class="form-group">
                 <input type="text" placeholder="search term" class="form-control" ng-model="nidctrl.searchTerm">
@@ -21,22 +21,22 @@
             <!-- Bonus loader (see Bonus section of the assignment) -->
             <items-loader-indicator></items-loader-indicator>
             <!-- found-items should be implemented as a component -->
-            <found-items found-items="nidctrl.found" on-remove="nidctrl.removeItem(index);"></found-items>
+            <found-items display-found-items="nidctrl.displayFound" found-items="nidctrl.found" on-remove="nidctrl.removeItem(index);"></found-items>
         </div>
         <script src="https://cdn.jsdelivr.net/jquery/3.1.0/jquery.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/angularjs/1.5.5/angular.min.js" integrity="sha256-FETnXgTya5za/5+eslN5uUeiVGnSg8RYtYO9pOnkDoc=" crossorigin="anonymous"></script>
         <script>
-        window.jQuery || document.write('<script src="scripts/jquery.min.js"><\/script>');
-        window.angular || document.write('<script src="scripts/angular.min.js"><\/script>');
+            window.jQuery || document.write('<script src="scripts/jquery.min.js"><\/script>');
+            window.angular || document.write('<script src="scripts/angular.min.js"><\/script>');
         </script>
         <script>
-        $.fn.modal || document.write('<script src="scripts/bootstrap.min.js"><\/script>');
+            $.fn.modal || document.write('<script src="scripts/bootstrap.min.js"><\/script>');
 
-        if ($('body').css('color') !== 'rgb(51, 51, 51)') {
-            $('head').prepend('<link rel="stylesheet" href="styles/bootstrap.min.css">');
-            $('head').prepend('<link rel="stylesheet" href="styles/bootstrap-theme.min.css">');
-        }
+            if ($('body').css('color') !== 'rgb(51, 51, 51)') {
+                $('head').prepend('<link rel="stylesheet" href="styles/bootstrap.min.css">');
+                $('head').prepend('<link rel="stylesheet" href="styles/bootstrap-theme.min.css">');
+            }
         </script>
         <script src="scripts/app.js"></script>
     </body>
