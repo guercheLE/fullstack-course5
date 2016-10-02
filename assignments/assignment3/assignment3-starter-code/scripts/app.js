@@ -38,7 +38,7 @@
                 var foundItems = [];
 
                 for (var i = 0; i < items.length; i++) {
-                    if (searchTerm !== '' && items[i].name.indexOf(searchTerm) !== -1) {
+                    if (searchTerm !== '' && items[i].name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
                         foundItems.push(items[i]);
                     }
                 }
