@@ -1,0 +1,17 @@
+<table class="table table-striped">
+    <caption>Categories</caption>
+    <thead>
+        <tr>
+            <th>Short Name</th>
+            <th>Name</th>
+            <th class="hidden-xs">Special Instructions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="category in categoriesCtrl.categories">
+            <td><a ui-sref="items({categoryShortName: category.short_name})">{{ category.short_name }}</a></td>
+            <td>{{ category.name }}</td>
+            <td class="hidden-xs">{{ category.special_instructions }}</td>
+        </tr>
+    </tbody>
+</table>
